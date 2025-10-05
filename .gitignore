@@ -1,0 +1,85 @@
+# Configuration files with secrets
+server/appsettings.json
+server/appsettings.Development.json
+server/appsettings.Production.json
+
+# Backup/History files
+.history/
+server/appsettings - Copy.json
+server/appsettings.Development - Copy.json
+*Copy*
+*.bak
+*.backup
+*.old
+*.orig
+*.tmp
+
+# Sensitive documentation
+server/docs/EMAIL_SETUP.md
+
+# Server - .NET
+server/bin/
+server/obj/
+server/logs/
+server/.vs/
+server/.vscode/
+server/*.user
+server/*.suo
+server/*.userosscache
+server/*.sln.docstates
+
+# Client - Node.js
+client/node_modules/
+client/dist/
+client/dist-ssr/
+client/*.local
+client/.vscode/*
+!client/.vscode/extensions.json
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.idea
+*.swp
+*.swo
+*~
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Git history and temp files
+.git/
+*.patch
+*.diff
+
+# Database files
+*.db
+*.sqlite
+*.mdf
+*.ldf
+
+# Temporary files
+*.temp
+*.swp
+*.swo
+*~
+.#*

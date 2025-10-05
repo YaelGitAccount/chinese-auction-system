@@ -1,0 +1,50 @@
+[
+  {
+    "name": "אלקטרוניקה",
+    "description": "מכשירים אלקטרוניים ומחשבים",
+    "color": "#007bff",
+    "isActive": true
+  },
+  {
+    "name": "ספרים",
+    "description": "ספרים דתיים וכלליים",
+    "color": "#28a745",
+    "isActive": true
+  },
+  {
+    "name": "משחקים",
+    "description": "משחקים וצעצועים לילדים",
+    "color": "#ffc107",
+    "isActive": true
+  },
+  {
+    "name": "ביגוד",
+    "description": "בגדים ואביזרים",
+    "color": "#e83e8c",
+    "isActive": true
+  },
+  {
+    "name": "בית ומטבח",
+    "description": "כלי בית וכלי מטבח",
+    "color": "#fd7e14",
+    "isActive": true
+  },
+  {
+    "name": "תכשיטים",
+    "description": "תכשיטים ואביזרי יופי",
+    "color": "#6f42c1",
+    "isActive": true
+  },
+  {
+    "name": "ספורט ונופש",
+    "description": "ציוד ספורט ופעילויות פנויה",
+    "color": "#20c997",
+    "isActive": true
+  },
+  {
+    "name": "אחר",
+    "description": "פריטים שונים",
+    "color": "#6c757d",
+    "isActive": true
+  }
+]
