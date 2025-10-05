@@ -1,153 +1,108 @@
-# Chinese Auction API Server
+# Chinese Auction Management System
 
-.NET 9 Web API backend for the Chinese Auction Management System.
+A full-stack web application for managing Chinese (Silent) Auctions. Supports the full lifecycle: setup, sales, lottery drawing, and results—with secure server-side payments and operational reporting.
 
-## 🚀 Quick Start
+Overview
 
-### Prerequisites
-- .NET 9 SDK
-- SQL Server (LocalDB/Express/Full)
+Multi-role access (Administrators, Customers)
 
-### Setup
-1. **Configure Database:**
-   ```json
-   // appsettings.json
-   {
-     "ConnectionStrings": {
-       "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=ChineseAuctionDB;Trusted_Connection=true;"
-     }
-   }
-   ```
+Email notifications and reporting (including Excel export)
 
-2. **Run Migrations:**
-   ```bash
-   dotnet ef database update
-   ```
+Cryptographically secure lottery draws
 
-3. **Start Server:**
-   ```bash
-   dotnet run
-   ```
+Emphasis on correctness, security, and performance
 
-## 📡 API Endpoints
+Technology Stack
 
-### Authentication
-- `POST /api/auth/login` - User login
-- `POST /api/auth/register` - User registration
+Backend (.NET 9): ASP.NET Core Web API, EF Core, SQL Server, JWT, SMTP, structured logging, Stripe .NET SDK (server-side only)
+Frontend (React 18): TypeScript, PrimeReact/PrimeFlex, React Router, Axios, Vite (no Stripe client SDK)
 
-### Gifts Management
-- `GET /api/gift` - List all gifts
-- `GET /api/gift/available` - Available gifts for purchase
-- `POST /api/gift` - Create new gift (Admin)
-- `PUT /api/gift/{id}` - Update gift (Admin)
-- `DELETE /api/gift/{id}` - Delete gift (Admin)
+Quick Start
 
-### Purchase System
-- `GET /api/purchase/cart/{userId}` - User's cart items
-- `POST /api/purchase/add-to-cart` - Add gift to cart
-- `POST /api/purchase/checkout` - Complete purchase
-- `DELETE /api/purchase/cart/{id}` - Remove from cart
+Prerequisites: .NET 9 SDK, Node.js 18+, SQL Server (LocalDB/Express/Full), optional SMTP
 
-### Lottery System
-- `POST /api/lottery/draw/{giftId}` - Draw lottery (Admin)
-- `GET /api/lottery/results` - Public lottery results
-- `GET /api/lottery/results/{giftId}` - Specific gift result
+Database
 
-### Reporting
-- `GET /api/purchase/summary` - Purchase analytics (Admin)
-- `GET /api/purchase/export` - Excel export (Admin)
-
-## 🔐 Security Features
-
-- **JWT Authentication** with role-based authorization
-- **Cryptographically secure** lottery system using `RandomNumberGenerator`
-- **Input validation** with data annotations
-- **SQL injection protection** via Entity Framework
-
-## ⚡ Performance Features
-
-- **Optimized queries** with aggregate functions
-- **Database indexes** for frequently accessed data
-- **Efficient Entity Framework** includes and projections
-- **Structured logging** with Serilog
-
-## 🛠️ Configuration
-
-### Email Settings
-```json
-{
-  "EmailSettings": {
-    "SmtpHost": "smtp.gmail.com",
-    "SmtpPort": "587",
-    "SmtpUser": "your-email@gmail.com",
-    "SmtpPassword": "your-app-password",
-    "FromEmail": "your-email@gmail.com",
-    "FromName": "Chinese Auction"
-  }
-}
-```
-
-### JWT Configuration
-```json
-{
-  "JwtConfig": {
-    "Secret": "your-super-secret-key-here",
-    "ExpirationInMinutes": 60
-  }
-}
-```
-
-## 📁 Project Structure
-
-```
-server/
-├── Controllers/          # API endpoints
-├── Services/            # Business logic layer
-├── Repositories/        # Data access layer
-├── Models/             # Entity models
-├── DTOs/               # Data transfer objects
-├── Helpers/            # Utility classes
-├── Middleware/         # Custom middleware
-├── Migrations/         # EF Core migrations
-└── Configurations/     # Configuration classes
-```
-
-## 🔧 Database Setup
-
-### Apply Performance Indexes
-```bash
-# Run the performance optimization script
-sqlcmd -S .\SQLEXPRESS -d ChineseAuctionDB -i performance_indexes.sql
-```
-
-### Manual Migration
-```bash
-# Add new migration
-dotnet ef migrations add MigrationName
-
-# Update database
+cd server
 dotnet ef database update
-```
 
-## 🧪 Development
 
-### Run in Development Mode
-```bash
-dotnet run --environment Development
-```
+Backend
 
-### Watch Mode (Auto-restart)
-```bash
-dotnet watch run
-```
+cd server
+dotnet restore
+dotnet run
+# API: https://localhost:5234
 
-### View Logs
-Logs are stored in `/logs` directory with daily rotation.
 
-## 📊 Monitoring
+Frontend
 
-- **Application logs:** `/logs/app-{date}.log`
-- **Health check:** `GET /health`
-- **Metrics:** Available via structured logging
+cd client
+npm install
+npm run dev
+# Web: http://localhost:5173
 
-Built with ASP.NET Core 9.0 🚀
+Key Features
+
+Auction Management: donors, categories, gifts, availability, pricing
+
+Payments (Server-Side Only): Stripe integration handled by the ASP.NET Core API (no client-side Stripe SDK); receipts and purchase history exposed via API
+
+Lottery: unbiased, cryptographically secure selection; multiple tickets per user
+
+Results & Notifications: winner display and email delivery
+
+Reporting: summaries by gift/donor/category; Excel export
+
+Security
+
+JWT-based authentication and role authorization
+
+Secure RNG for lottery (RandomNumberGenerator)
+
+Input validation/sanitization; EF-based SQL injection safeguards
+
+Configurable CORS
+
+Performance
+
+Aggregate queries to eliminate N+1 patterns
+
+Indexing of frequently accessed columns
+
+Optimized EF queries with appropriate includes
+
+(Optional) caching strategies
+
+Configuration
+
+Environment variables / settings:
+
+DefaultConnection — SQL Server connection string
+
+JwtConfig:Secret — JWT signing key
+
+Stripe:SecretKey — Stripe API key (used by server only)
+
+EmailSettings:* — SMTP configuration (host/port/user/password/from)
+
+Documentation
+
+docs/PERFORMANCE.md — performance strategy and indexes
+
+docs/SECURE_RANDOM.md — secure RNG design and rationale
+
+Swagger is available when the backend is running
+
+Testing
+# Backend
+cd server
+dotnet test
+
+# Frontend
+cd client
+npm test
+
+License
+
+MIT License. See LICENSE.
